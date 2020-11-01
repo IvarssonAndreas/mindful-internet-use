@@ -217,6 +217,6 @@ document
   .addEventListener('click', goToOptions);
 
 const reviewLink = document.querySelector(".stop-container__review")
-randomDisplay(reviewLink, 0.2)
+randomDisplay(reviewLink, 0.6)
 
 
