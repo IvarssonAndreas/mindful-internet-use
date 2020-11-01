@@ -1,4 +1,4 @@
-import utilities from "../utilities";
+import {updateStorageValue,handleClass,} from "../utilities";
 
 export default (id, containerId, key) =>
   new GeneralSwitch(id, containerId, key);
@@ -47,8 +47,8 @@ class GeneralSwitch {
   switchHandler() {
     chrome.storage.sync.get([this.key], result => {
 
-      utilities.updateStorageValue(this.key, !result[this.key], () => {
-        utilities.handleClass(
+      updateStorageValue(this.key, !result[this.key], () => {
+        handleClass(
           result[this.key],
           "hidden-container",
           this.container
@@ -60,7 +60,7 @@ class GeneralSwitch {
   loadSwitchValue() {
     chrome.storage.sync.get([this.key], result => {
       this.switch.children[0].children[0].checked = result[this.key];
-      utilities.handleClass(
+      handleClass(
         !result[this.key],
         "hidden-container",
         this.container

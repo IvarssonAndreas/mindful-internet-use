@@ -1,6 +1,6 @@
 .popup {
   display: flex;
-  width: 15rem;
+  width: 35rem;
   flex-direction: column;
   padding-bottom: 0.6rem;
 
@@ -10,7 +10,7 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     text-align: center;
-    width: 90%;
+    width: 50%;
     color: #f9f7f6;
     padding: 10px 5px;
     border: 1px solid rgb(10, 17, 26);
@@ -20,11 +20,15 @@
     transition: 0.4s all;
     outline: none;
 
+    &--outline {
+      border: 1px solid rgb(10, 17, 26);
+      color: rgb(10, 17, 26);
+      background-color: #f9f7f6 ;
+
+    }
+
     &:hover {
       cursor: pointer;
-      background: rgb(4, 7, 10);
-      border: 1px solid rgb(4, 7, 10);
-      color: #f9f7f6;
     }
 
     &:active {
@@ -45,7 +49,6 @@
     height: 50px;
     margin: 0 1rem;
     align-items: center;
-    justify-content: center;
 
     &-img {
       width: 40%;
@@ -54,7 +57,6 @@
 
   &__header {
     display: flex;
-    flex-direction: column;
     align-items: center;
     padding: 0.3rem;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -63,8 +65,6 @@
   &__items {
     display: flex;
     justify-content: center;
-    flex-direction: column;
-    align-items: center;
     margin-top: 0.5rem;
 
     & > * {
@@ -72,7 +72,41 @@
       margin: 0.5rem 0.3rem;
     }
   }
-  
 
-  
+  &__temp-access-list {
+
+    &-item {
+      padding: 2px 8px ;
+      font-size: 1.4rem;
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+
+      &-pattern {
+        overflow-wrap: anywhere;
+      }
+      &-time {
+        padding-left: 10px;
+        margin-left: auto;
+      }
+
+      &-remove-btn {
+        text-transform: uppercase;
+        background-color: inherit;
+        font-size: 1.4rem;
+        color: #111d2b;
+        outline: none;
+        border: none;
+
+        &::before {
+          content: "x";
+        }
+
+        &:hover {
+          cursor: pointer;
+          color: rgb(207, 198, 194);
+        }
+      }
+    }
+  }
 }

@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import utilities from '../utilities';
+import {htmlToElement,insertAfter} from '../utilities';
 import createTimerButton from '../components/createTimerButton';
 import setUpGoogleAnalytics from "../analytics"
 
@@ -131,7 +131,7 @@ chrome.storage.sync.get(['defaultQuotes', 'userQuotes', 'copy'], (result) => {
   function handleCopying(motivationSplit) {
     motivationNode.insertAdjacentElement(
       'afterbegin',
-      utilities.htmlToElement('<span class="blinking-cursor">|</span>')
+      htmlToElement('<span class="blinking-cursor">|</span>')
     );
 
     document.addEventListener('keydown', registerKeyDonw);
@@ -150,7 +150,7 @@ chrome.storage.sync.get(['defaultQuotes', 'userQuotes', 'copy'], (result) => {
 
         charHtml.previousElementSibling &&
           motivationNode.removeChild(charHtml.previousElementSibling);
-        utilities.insertAfter(
+        insertAfter(
           utilities.htmlToElement('<span class="blinking-cursor">|</span>'),
           charHtml
         );
@@ -184,7 +184,9 @@ function makeTempAccess() {
         tempAccess = result.tempAccess;
       }
 
-      tempAccess.push({ blockPattern, firstAccess: dayjs().format(), time });
+      tempAccess = tempAccess.filter(access => access.blockPattern !== blockPattern)
+
+      tempAccess.push( blockPattern, firstAccess: dayjs().format(), time });
 
       chrome.storage.sync.set({ tempAccess }, () => {
         window.location.replace(blockUrl);

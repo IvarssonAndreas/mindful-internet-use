@@ -1,12 +1,21 @@
-
-
+import dayjs from "dayjs"
 import setUpGoogleAnalytics from "../analytics"
 import ToggleSwitch from "../components/toggle-switch"
+import htmlToElement from "../utils/htmlToElement/htmlToElement";
+import {formatDuration} from "../utilities";
 
+const intervalsIds = []
 
 document.addEventListener("DOMContentLoaded", function () {
 
   setUpGoogleAnalytics("/page")
+  getTempAccessList()
+      .then(tempAccessList => {
+        renderTempAccessList(tempAccessList)
+        intervalsIds.push(setInterval(() => renderTempAccessList(tempAccessList),1000));
+      })
+
+
 
   getMIUEnableValue().then(isMIUEnabled => {
     const disableSwitch = new ToggleSwitch({
@@ -15,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
       isChecked: isMIUEnabled
     })
 
-    document.querySelector(".popup__items").appendChild(disableSwitch.render())
+    document.querySelector(".popup__header").append(disableSwitch.render())
   })
 
 
@@ -56,6 +65,38 @@ function addActiveUrlToDanger(e) {
   });
 }
 
+function getTempAccessList(){
+  return new Promise((resolve) => {
+    chrome.storage.sync.get(['tempAccess'], ({tempAccess}) => {
+      if (!tempAccess) {
+        return []
+      }
+      return resolve(tempAccess)
+    })
+  })
+}
+
+function renderTempAccessList(tempAccessList) {
+  const tempAccessListHtml = tempAccessList.map(({firstAccess,time, blockPattern}) => {
+    const secondsPast = dayjs().diff(firstAccess, 'seconds')
+    const secondsLeft = (time * 60) - secondsPast;
+    if(secondsLeft < 0){
+      return  false
+    }
+
+    const timeLeft = formatDuration(secondsLeft)
+
+    return `<li class="popup__temp-access-list-item">
+            <p class="popup__temp-access-list-item-pattern">${blockPattern} </p>
+             <p class="popup__temp-access-list-item-time">${timeLeft}</p>  
+            </li>`
+  }).filter(item => item ).join('')
+
+  const tempAccessListElement =   document.querySelector(".popup__temp-access-list")
+  tempAccessListElement.innerHTML = ''
+  tempAccessListElement.appendChild(htmlToElement(`<ol>${tempAccessListHtml}</ol>`))
+}
+
 
 function getMIUEnableValue() {
   return new Promise((resolve, reject) => {
@@ -69,6 +110,7 @@ function getMIUEnableValue() {
     })
   })
 }
+
 
 
 
