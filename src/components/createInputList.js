@@ -1,4 +1,4 @@
-import utilities from '../utilities';
+import {htmlToElement} from '../utilities';
 
 export default (id, storageKey, callbackAfterSetStorage) => new InputList(id, storageKey, callbackAfterSetStorage);
 
@@ -107,7 +107,7 @@ class InputList {
 
   addItem() {
     const index = this.list.children.length;
-    const li = utilities.htmlToElement(this.getHtmlStringItem('', index));
+    const li = htmlToElement(this.getHtmlStringItem('', index));
     this.list.appendChild(li);
     li.querySelector('.input-list__item-input').focus();
   }
