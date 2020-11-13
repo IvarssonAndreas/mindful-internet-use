@@ -151,7 +151,7 @@ chrome.storage.sync.get(['defaultQuotes', 'userQuotes', 'copy'], (result) => {
         charHtml.previousElementSibling &&
           motivationNode.removeChild(charHtml.previousElementSibling);
         insertAfter(
-          utilities.htmlToElement('<span class="blinking-cursor">|</span>'),
+          htmlToElement('<span class="blinking-cursor">|</span>'),
           charHtml
         );
 
@@ -186,7 +186,7 @@ function makeTempAccess() {
 
       tempAccess = tempAccess.filter(access => access.blockPattern !== blockPattern)
 
-      tempAccess.push( blockPattern, firstAccess: dayjs().format(), time });
+      tempAccess.push( {blockPattern, firstAccess: dayjs().format(), time });
 
       chrome.storage.sync.set({ tempAccess }, () => {
         window.location.replace(blockUrl);

@@ -1,9 +1,9 @@
-import utilities from '../utilities';
+import {htmlToElement} from '../utilities';
 
 export default {
   addItem: (inputList) => {
     const newIndex = inputList.children.length;
-    const li = utilities.htmlToElement(
+    const li = htmlToElement(
       `<li
          class="input-list__item" 
          data-index = "${newIndex}">
