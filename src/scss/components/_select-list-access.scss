@@ -6,7 +6,7 @@
 
   margin-right: 1rem;
   letter-spacing: 2px;
-  border-radius: 2px;
+  border-radius: 5px;
 
   width: 100px;
 
@@ -55,7 +55,7 @@
 }
 
 .select-access-selected.select-arrow-active {
-  border-radius: 2px 2px 0 0;
+  border-radius: 5px 5px 0 0;
 }
 /* style the items (options), including the selected item: */
 .select-access-items div,
@@ -83,6 +83,7 @@
 }
 
 .focus {
+  border-radius: 5px;
   border: 2px solid white;
 }
 

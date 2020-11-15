@@ -13,12 +13,10 @@
   font-size: 1.6rem;
 
   &__logo {
-    margin: 1rem auto;
-
-    &-img {
-      width: 6rem;
-      height: 6rem;
-    }
+    font-weight: bold;
+    margin: 2rem auto;
+    font-size: 3.5rem;
+    color: #0d1721;
   }
 
   &-upper {

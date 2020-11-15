@@ -13,7 +13,7 @@
 
 .select-selected {
   background-color: rgb(10, 17, 26);
-  border-radius: 2px;
+
 }
 
 /* Style the arrow inside the select element: */
@@ -52,6 +52,12 @@
   left: 0;
   right: 0;
   z-index: 99;
+}
+
+
+.select-items:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 /* Hide the items when the select box is closed: */

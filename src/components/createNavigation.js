@@ -37,11 +37,8 @@ class Navigation {
   }
 
   setupHtml() {
-    let html = this.logoUrl
-      ? `<div class="side-nav__logo"> 
-        <img class="side-nav__logo-img" src=${this.logoUrl} />
-      </div>`
-      : "";
+    let html = `<h1 class="side-nav__logo"> >MIU</h1>`;
+
 
     html += '<ul class="side-nav__list">';
     for (let i = 0; i < this.items.length; i++) {

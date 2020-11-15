@@ -12,10 +12,6 @@ const defaultQuotes = [
     author: 'Ludovic Tendron',
   },
   {
-    qoute: 'The internet is used as not just a tool anymore but as part of our daily makeup. Almost like oxygen. Discipline goes a long way in protecting our sanity.',
-    author: 'Torron-Lee Dewar',
-  },
-  {
     qoute: 'Tech isn’t morally good or bad until it’s wielded by the corporations that fashion it for mass consumption. Apps and platforms can be designed to promote rich social connections; or, like cigarettes, they can be designed to addict. Today, unfortunately, many tech developments do promote addiction.',
     author: 'Adam Alter',
   },

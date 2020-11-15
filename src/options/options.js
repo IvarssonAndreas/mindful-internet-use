@@ -11,6 +11,7 @@ setUpGoogleAnalytics("/stop")
 
 try {
     const timerListDanger = createTimerList('timerListDanger', 'DANGER');
+    const timerListRest = createTimerList('timerListRest', 'REST');
     const numBreathSelector = selectList("numBreathSelector")
 
     const dangerURLs = createInputList('danger-list', 'dangerList');

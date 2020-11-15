@@ -8,12 +8,8 @@
   }
 
   &__item {
+    border-radius: 5px;
     font-size: 1.6rem;
-    // display: flex;
-    // align-items: center;
-    // padding: 0.5rem 0.5rem 0.5rem 0.8rem;
-    // justify-content: space-between;
-    // border-radius: 2px;
     display: flex;
     // padding: 0;
     &:nth-child(odd) {
@@ -21,6 +17,7 @@
     }
 
     &-input {
+      border-radius: 5px;
       border: none;
       outline: none;
       color: #f9f7f6;
@@ -62,7 +59,7 @@
     color: #f9f7f6;
     padding: 10px 0px;
     border: 1px solid rgb(10, 17, 26);
-    border-radius: 2px;
+    border-radius: 5px;
     //position: relative;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
     transition: 0.4s all;

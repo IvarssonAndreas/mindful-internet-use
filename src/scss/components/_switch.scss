@@ -19,7 +19,7 @@
   right: 0;
   bottom: 0;
   background-color: rgba(249, 247, 246, 0.3);
-  border-radius: 2px;
+  border-radius: 5px;
 }
 
 .hidden-container,
@@ -45,7 +45,7 @@
   background-color: #111d2b;
   /* -webkit-transition: .4s;
     transition: .4s; */
-  border-radius: 2px;
+  border-radius: 5px;
 }
 
 .switch__input:checked + .slider {

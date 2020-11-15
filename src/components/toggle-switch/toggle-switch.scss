@@ -7,7 +7,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  border-radius: 2px;
+  border-radius: 5px;
   height: 25px;
   font-size: 1.6rem;
   width: 80px;
@@ -32,6 +32,7 @@
 
 .toggle-switch__label--off {
   opacity: 1;
+
   display: inline-block;
   width: 50%;
   color :  white;
@@ -51,8 +52,8 @@
     z-index: 10;
     width: 40px;
     height: 25px;
-    border-top-left-radius: 1px;
-    border-bottom-left-radius: 1px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
     color: white;
     transition: all 0.25s ease;
   }
@@ -61,8 +62,8 @@
  
   .toggle-switch__input:checked + .toggle-switch__label::before {
     border-radius: 0;
-    border-top-right-radius: 1px;
-    border-bottom-right-radius: 1px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     background-color: #0d1721;
     left: 100%;
     transform: translateX(-100%) ;
