@@ -80,6 +80,11 @@
   right: 0;
 
   z-index: 99;
+
+  &:last-child {
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
 }
 
 .focus {

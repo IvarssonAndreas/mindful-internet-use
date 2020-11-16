@@ -13,6 +13,12 @@
 
 .select-selected {
   background-color: rgb(10, 17, 26);
+  border-radius: 5px;
+}
+
+.select-arrow-active {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 
 }
 
