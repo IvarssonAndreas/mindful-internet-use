@@ -92,15 +92,15 @@ try {
         [
             {
                 section: 'danger',
-                text: 'MINDLESS WEBSITES',
+                text: 'Mindless websites',
             },
             {
                 section: 'default-list',
-                text: 'MOTIVATIONAL QUOTES',
+                text: 'Motivational quotes',
             },
             {
                 section: 'reminder_content',
-                text: 'REMINDERS',
+                text: 'Reminders',
             },
         ],
         'img/logoBlue128.png'
