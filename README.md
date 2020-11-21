@@ -2,7 +2,7 @@
 
 ### A Chrome Extension that prevents mindless browsing
 
-https://chrome.google.com/webstore/detail/mindful-internet-use/hieolpjdilnibgamiafklnlcmagdngoo?hl=en
+http://mindfulinternetuse.com/
 
 #### Technologies used:
 
