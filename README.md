@@ -6,7 +6,7 @@ https://chrome.google.com/webstore/detail/mindful-internet-use/hieolpjdilnibgami
 
 #### Technologies used:
 
-HTML, SCSS, Vanilla Javascript, Webpack, Google analytics
+HTML, SCSS, Vanilla Javascript, Webpack
 
 #### Why you should try it:
 
