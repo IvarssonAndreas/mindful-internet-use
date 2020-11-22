@@ -58,7 +58,6 @@
     display: flex;
     align-items: center;
     padding: 0.5rem;
-    margin-right: 5px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1);
   }
 
@@ -77,18 +76,24 @@
   &__temp-access-list {
 
     &-item {
-      padding: 2px 8px ;
+      padding: 4px 8px ;
       font-size: 1.4rem;
       margin-top: 5px;
       display: flex;
       align-items: center;
 
+      &:nth-child(2n){
+        background-color: #eee;
+      }
       &-pattern {
         overflow-wrap: anywhere;
+        width: 80%;
       }
       &-time {
-        padding-left: 10px;
+        text-align: left;
+        padding-left: 15px;
         margin-left: auto;
+        width: 20%;
       }
 
       &-remove-btn {

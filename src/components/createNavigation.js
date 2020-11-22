@@ -52,7 +52,7 @@ class Navigation {
 
     html += "</ul>";
     html +=
-      '<div class="side-nav__contacts"><a class="side-nav__link" href="https://chrome.google.com/webstore/detail/mindful-internet-use/hieolpjdilnibgamiafklnlcmagdngoo">We’d love to hear your feedback!</a></div>';
+      '<div class="side-nav__contacts"><a class="side-nav__link" href="https://chrome.google.com/webstore/detail/mindful-internet-use/hieolpjdilnibgamiafklnlcmagdngoo">I’d love to hear your feedback!</a></div>';
     this.navigation.innerHTML = html;
   }
 }

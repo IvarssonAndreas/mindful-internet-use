@@ -6,6 +6,8 @@ import {formatDuration} from "../utilities";
 
 const intervalsIds = []
 
+document.addEventListener('unload', () => intervalsIds.forEach(id => clearInterval(id)))
+
 document.addEventListener("DOMContentLoaded", function () {
 
   setUpGoogleAnalytics("/page")
