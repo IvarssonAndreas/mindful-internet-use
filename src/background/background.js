@@ -23,6 +23,18 @@ const state = {
   isMIUEnabled: undefined
 }
 
+chrome.tabs.onActivated.addListener(() => {
+    chrome.tabs.query({
+        active: true,
+        currentWindow: true
+    }, ([currentTab]) => {
+        state.tempAccess = syncTempAccess(state.tempAccess)
+        handlePageLoad({ url: currentTab.url, tabId: currentTab.id}, state)
+    });
+})
+
+
+
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (state.lastUrl !== tab.url) {
     state.lastUrl = tab.url;
