@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+@layer base {
+
+    @font-face {
+        font-family: 'Comfortaa';
+        font-style: normal;
+        font-weight: 400;
+        font-display: fallback;
+        src: local(''),
+        url('assets/fonts/comfortaa-v34-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('assets/fonts/comfortaa-v34-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    }
+    /* comfortaa-500 - latin */
+    @font-face {
+        font-family: 'Comfortaa';
+        font-style: normal;
+        font-weight: 500;
+        font-display: fallback;
+        src: local(''),
+        url('assets/fonts/comfortaa-v34-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('assets/fonts/comfortaa-v34-latin-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    }
+    /* comfortaa-700 - latin */
+    @font-face {
+        font-family: 'Comfortaa';
+        font-style: normal;
+        font-weight: 700;
+        font-display: fallback;
+        src: local(''),
+        url('assets/fonts/comfortaa-v34-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('assets/fonts/comfortaa-v34-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    }
+
+
+
+
+    body {
+        background-image: linear-gradient(to left top, rgb(10, 17, 26), rgb(17, 29, 43));
+        -webkit-font-smoothing: antialiased;
+        font-size: 100%;
+        line-height: 1.5;
+        font-family: Comfortaa,-apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+    }
+
+    :root {
+        --scrollbar-background: hsl(210deg, 15%, 6.25%);
+        --scrollbar-gray-300: hsl(210deg, 10%, 40%);
+
+        --scrollbar-gray-500: hsl(210deg, 8%, 50%);
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+        background-color: var(--scrollbar-background);
+    }
+    ::-webkit-scrollbar-thumb {
+        border-radius: 1000px;
+        background-color: var(--scrollbar-gray-300);
+        border: 2px solid var(--scrollbar-background);
+    }
+   
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: var(--scrollbar-gray-500);
+    }
+}
