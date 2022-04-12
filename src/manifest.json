@@ -19,11 +19,5 @@
     "128": "logo128.png"
   },
   "short_name": "MIU",
-  "permissions": [
-    "storage",
-    "tabs"
-  ]
-
+  "permissions": ["storage", "tabs"]
 }
-
-

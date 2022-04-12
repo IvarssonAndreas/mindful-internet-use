@@ -5,15 +5,18 @@
   "scripts": {
     "test": "jest --watch ",
     "test-coverage": "jest --coverage ",
+    "test-validate": "jest",
     "build": "BABEL_ENV=production NODE_ENV=production ASSET_PATH=/ webpack --config webpack.config.js ",
     "analyze-bundles": "ANALYZE_BUNDLES=true npm run build",
     "start": "node utils/webserver.js",
-    "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
+    "lint": "eslint --ignore-path .gitignore --ext .ts,.tsx . --max-warnings=28",
     "check-types": "tsc",
-    "prettier": "prettier --ignore-path .gitignore \"src/**/*.+(js|json|tsx|ts)\"",
+    "pre-commit": "npm run check-types && lint-staged && npm run test-validate && npm run build",
+    "prepare": "husky install",
+    "prettier": "prettier --ignore-path .gitignore \"src/**/*.+(json|tsx|ts)\"",
     "format": "npm run prettier -- --write",
     "check-format": "npm run prettier -- --list-different",
-    "validate": "npm-run-all --parallel check-types check-format lint build"
+    "validate": "npm-run-all --parallel check-types check-format lint build test-validate"
   },
   "dependencies": {
     "@babel/runtime": "7.17.8",
@@ -72,10 +75,12 @@
     "fs-extra": "10.0.0",
     "html-loader": "3.1.0",
     "html-webpack-plugin": "5.5.0",
+    "husky": "7.0.4",
     "jest": "27.5.1",
     "jest-axe": "^6.0.0",
     "jest-watch-typeahead": "1.0.0",
     "jest-webextension-mock": "3.7.19",
+    "lint-staged": "12.3.7",
     "mini-css-extract-plugin": "2.6.0",
     "node-sass": "6.0.1",
     "npm-run-all": "4.1.5",
@@ -103,6 +108,9 @@
     "testEnvironment": "jest-environment-jsdom",
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupTests.ts"
+    ],
+    "roots": [
+      "<rootDir>/src"
     ],
     "moduleNameMapper": {
       "^@option-ui(.*)$": "<rootDir>/src/options/ui$1",
