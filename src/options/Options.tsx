@@ -31,7 +31,7 @@ const Options = () => {
             className="decoration absolute bottom-4 inline-block flex w-full items-center justify-center px-3 pb-1 pt-4 text-center text-sm font-bold text-mui-blue transition hover:scale-x-105  hover:cursor-pointer"
           >
             <StarIcon className="mr-2 h-5 w-5" />
-            I&#39;d love to hear feedback
+            I&#39;d love to hear your feedback
           </a>
         </div>
       </div>
