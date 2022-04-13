@@ -1,10 +1,6 @@
 # Mindful Internet Use
 ### A Chrome Extension that prevents mindless browsing
 
-This is a rewrite of the old version: https://github.com/IvarssonAndreas/mindful-internet-use-old
-
-
-
 #### Why you should try it:
 
 The name MIU, short for **Mindful Internet Use**, can be viewed as the antonym of the Psychological term Problematic Internet Use (PIU). Problematic Internet Use is described as "an inability to control one's use of the Internet which leads to negative consequences in daily life”.
