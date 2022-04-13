@@ -25,16 +25,12 @@ export const QuotesTab = () => {
       </div>
 
       <SectionContainer>
-        <ErrorBoundary FallbackComponent={ErrorFallback} onError={errorHandler}>
-          <SectionHeading>Your own quotes</SectionHeading>
-          <UserQuoteList />
-        </ErrorBoundary>
+        <SectionHeading>Your own quotes</SectionHeading>
+        <UserQuoteList />
       </SectionContainer>
 
       <SectionContainer>
-        <ErrorBoundary FallbackComponent={ErrorFallback} onError={errorHandler}>
-          <QuoteToggleList />
-        </ErrorBoundary>
+        <QuoteToggleList />
       </SectionContainer>
     </div>
   )

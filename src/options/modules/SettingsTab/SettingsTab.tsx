@@ -16,19 +16,15 @@ export const SettingsTab = () => {
       </TabHeading>
 
       <SectionContainer>
-        <ErrorBoundary FallbackComponent={ErrorFallback} onError={errorHandler}>
-          <SectionHeading>
-            What to do before accessing a mindless website
-          </SectionHeading>
-          <AfterBreathingSetting />
-        </ErrorBoundary>
+        <SectionHeading>
+          What to do before accessing a mindless website
+        </SectionHeading>
+        <AfterBreathingSetting />
       </SectionContainer>
 
       <SectionContainer>
-        <ErrorBoundary FallbackComponent={ErrorFallback} onError={errorHandler}>
-          <SectionHeading>Number of breath on breathing timer</SectionHeading>
-          <NumberOfBreathSetting />
-        </ErrorBoundary>
+        <SectionHeading>Number of breath on breathing timer</SectionHeading>
+        <NumberOfBreathSetting />
       </SectionContainer>
     </div>
   )

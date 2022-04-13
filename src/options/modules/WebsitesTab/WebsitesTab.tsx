@@ -15,13 +15,11 @@ export const WebsitesTab = () => {
       </TabHeading>
 
       <SectionContainer>
-        <ErrorBoundary FallbackComponent={ErrorFallback} onError={errorHandler}>
-          <SectionHeading>
-            Add the URLs, or part of the URLs, to the websites you tend to use
-            mindlessly
-          </SectionHeading>
-          <MindlessUrlList />
-        </ErrorBoundary>
+        <SectionHeading>
+          Add the URLs, or part of the URLs, to the websites you tend to use
+          mindlessly
+        </SectionHeading>
+        <MindlessUrlList />
       </SectionContainer>
     </div>
   )
