@@ -10,6 +10,7 @@ interface Option<Value = string> {
 export interface SelectProps<Value = string> {
   color?: keyof typeof colorVariants
   defaultLabel?: string
+  disabled?: boolean
   options: Option<Value>[]
   autoFocus?: boolean
   selectedValue: Option<Value>['value']
@@ -20,6 +21,7 @@ export function Select<Value>({
   color = 'mui-blue',
   defaultLabel,
   options,
+  disabled,
   autoFocus = false,
   selectedValue,
   onSelectValue,
@@ -35,11 +37,15 @@ export function Select<Value>({
   }
 
   return (
-    <Listbox value={selectedOption?.value} onChange={onSelectValue}>
+    <Listbox
+      disabled={disabled}
+      value={selectedOption?.value}
+      onChange={onSelectValue}
+    >
       <div className="relative mt-1">
         <Listbox.Button
           autoFocus={autoFocus}
-          className={`${colorVariants[color].button} relative w-full cursor-pointer rounded-lg py-2 pl-3 pr-10 text-left text-lg font-bold tracking-wider shadow shadow-mui-blue-darkest focus:outline-none  focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-offset-2`}
+          className={`${colorVariants[color].button} relative w-full cursor-pointer rounded-lg py-2 pl-3 pr-10 text-left text-lg font-bold tracking-wider shadow shadow-mui-blue-darkest focus:outline-none focus-visible:ring-2  focus-visible:ring-opacity-75 focus-visible:ring-offset-2 disabled:cursor-not-allowed`}
         >
           <span className="block truncate">
             {selectedOption?.label ?? defaultLabel}

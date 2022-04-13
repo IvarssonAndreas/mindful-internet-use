@@ -6,13 +6,8 @@ import React, {
   forwardRef,
   ForwardedRef,
 } from 'react'
-import {Button} from '@ui'
-import {LockClosedIcon, TrashIcon} from '@heroicons/react/solid'
-import {Breathing} from '../../stop/Breathing'
-import {Dialog} from '@headlessui/react'
-import {AnimatePresence, motion} from 'framer-motion'
-import {XIcon} from '@heroicons/react/outline'
-import {useNumberOfBreath} from '@utils'
+import {Button, LockedBeforeBreathing} from '@ui'
+import {TrashIcon} from '@heroicons/react/solid'
 
 export interface InputListProps {
   list: string[]
@@ -73,7 +68,17 @@ export const InputList = ({
     <div>
       <div className={`${showLockedOverlay ? 'min-h-[220px]' : ''} relative `}>
         {showLockedOverlay && (
-          <LockedOverlay onUnlock={() => setIsLocked(false)} />
+          <LockedBeforeBreathing
+            description={
+              <p className="text-center text-sm	font-bold uppercase leading-7 tracking-wider text-amber-50 ">
+                Setting requires breathing <br />
+                <span className=" text-sm font-bold text-amber-50	underline decoration-mui-gold decoration-2 underline-offset-4">
+                  Items can still be added
+                </span>
+              </p>
+            }
+            onUnlock={() => setIsLocked(false)}
+          />
         )}
 
         {list.length > 0 && (
@@ -122,56 +127,6 @@ export const InputList = ({
         </Button>
       </div>
     </div>
-  )
-}
-
-const LockedOverlay = ({onUnlock}: {onUnlock: () => void}) => {
-  const [isUnlocking, setIsUnlocking] = useState(false)
-  const numberOfBreath = useNumberOfBreath()
-
-  return (
-    <AnimatePresence>
-      <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col items-center justify-center space-y-4 rounded-xl bg-gradient-to-tl from-mui-blue to-mui-blue-alpha p-5 text-amber-50">
-        {!isUnlocking ? (
-          <>
-            <p className="text-center text-sm	 uppercase leading-7 tracking-wider text-mui-gold">
-              Setting requires breathing <br />
-              <span className=" text-sm	 text-amber-50">
-                Items can still be added
-              </span>
-            </p>
-            <LockClosedIcon className="h-20 w-20" />
-            <Button onClick={() => setIsUnlocking(true)}>Unlock</Button>
-          </>
-        ) : (
-          <Dialog
-            as={motion.div}
-            initial={{opacity: 0}}
-            animate={{opacity: 1}}
-            transition={{duration: 0.5}}
-            className="fixed inset-0 z-10 flex items-center justify-center overflow-y-auto"
-            open={isUnlocking}
-            onClose={() => setIsUnlocking(false)}
-          >
-            <button
-              onClick={() => setIsUnlocking(false)}
-              className="absolute right-5 top-5 z-40 rounded-3xl p-4 text-amber-50 transition hover:cursor-pointer hover:ring hover:ring-amber-50   hover:ring-opacity-75 focus-visible:outline-none focus-visible:ring focus-visible:ring-amber-50 focus-visible:ring-offset-amber-50"
-            >
-              <XIcon className="h-8 w-8" />
-            </button>
-            <Dialog.Overlay className="fixed inset-0  bg-gradient-to-tr from-mui-blue-alpha to-mui-blue-dark" />
-            <div className="my-8 inline-block w-full max-w-md transform  rounded-2xl  p-6 text-left align-middle  transition-all">
-              {numberOfBreath && (
-                <Breathing
-                  onComplete={() => onUnlock()}
-                  numberOfBreath={numberOfBreath}
-                />
-              )}
-            </div>
-          </Dialog>
-        )}
-      </div>
-    </AnimatePresence>
   )
 }
 

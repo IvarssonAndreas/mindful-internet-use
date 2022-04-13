@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
 
-import {SectionContainer, SectionHeading, Select, SelectProps} from '@option-ui'
+import {Select, SelectProps} from '@option-ui'
 import {useSyncedState} from '@utils'
+import {BreathingOverlay, Button, LockedBeforeBreathing} from '@ui'
+import {LockClosedIcon} from '@heroicons/react/solid'
 
 const options: SelectProps<number>['options'] = [
   {label: '1', value: 1},
@@ -18,14 +20,39 @@ const options: SelectProps<number>['options'] = [
 
 export const NumberOfBreathSetting = () => {
   const [selected, setSelected] = useSyncedState<number>('numBreath')
+  const [lockedStatus, setLockedStatus] = useState<'unlocked' | 'locked'>(
+    'locked',
+  )
+
+  if (selected === null) {
+    return null
+  }
+
   return (
-    <div className="w-[220px]">
-      {selected !== null && (
+    <div
+      className={`${
+        lockedStatus === 'locked' ? 'h-[160px]' : ''
+      } relative isolate`}
+    >
+      <div className="w-[150px]">
         <Select
+          disabled={lockedStatus === 'locked'}
           onSelectValue={value => setSelected(value)}
           selectedValue={selected}
           options={options}
         />
+      </div>
+      {lockedStatus === 'locked' && (
+        <div className="z-10 mx-auto w-full">
+          <LockedBeforeBreathing
+            description={
+              <p className="text-center text-sm font-bold	 uppercase leading-7 tracking-wider text-amber-50">
+                Setting requires breathing
+              </p>
+            }
+            onUnlock={() => setLockedStatus('unlocked')}
+          />
+        </div>
       )}
     </div>
   )

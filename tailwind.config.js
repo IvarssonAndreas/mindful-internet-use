@@ -8,7 +8,7 @@ module.exports = {
           light: '#0b1721',
           dark: '#0a111a',
           darkest: '#070b10',
-          alpha: 'rgba(10,17,26,0.75)',
+          alpha: 'rgba(10,17,26,0.60)',
         },
         'mui-gold': {
           DEFAULT: '#c59867',
