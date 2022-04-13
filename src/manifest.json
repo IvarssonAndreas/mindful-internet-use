@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "short_name": "MIU",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "name": "Mindful Internet Use",
   "description": "A Chrome Extension that prevents mindless browsing",
   "options_page": "options.html",
