@@ -87,5 +87,5 @@ const timeOptions: SelectProps<number>['options'] = [
   {label: '45min', value: 45},
   {label: '60min', value: 60},
   {label: '90min', value: 90},
-  {label: '120min', value: 1200},
+  {label: '120min', value: 120},
 ]
