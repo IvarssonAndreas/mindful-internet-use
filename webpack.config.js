@@ -59,6 +59,8 @@ const options = {
     clean: true,
     publicPath: ASSET_PATH,
   },
+  devtool:
+    process.env.NODE_ENV === 'development' ? 'eval-source-map' : 'source-map',
   module: {
     rules: [
       {
