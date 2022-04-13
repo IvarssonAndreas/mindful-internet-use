@@ -7,6 +7,7 @@ import {
   WebsitesTab,
 } from './modules'
 import {Logo} from '@utils'
+import {StarIcon} from '@heroicons/react/solid'
 
 type ActiveTab = NavListProps['activeTab']
 
@@ -24,6 +25,14 @@ const Options = () => {
             </div>
           </div>
           <NavList onChange={tab => setActiveTab(tab)} activeTab={activeTab} />
+
+          <a
+            href="https://chrome.google.com/webstore/detail/mindful-internet-use/hieolpjdilnibgamiafklnlcmagdngoo"
+            className="decoration absolute bottom-4 inline-block flex w-full items-center justify-center px-3 pb-1 pt-4 text-center text-sm font-bold text-mui-blue transition hover:scale-x-105  hover:cursor-pointer"
+          >
+            <StarIcon className="mr-2 h-5 w-5" />
+            I&#39;d love to hear feedback
+          </a>
         </div>
       </div>
       <div className="h-full">
