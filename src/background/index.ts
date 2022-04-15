@@ -45,13 +45,17 @@ const main = () => {
     })
 
     browser.tabs.onActivated.addListener(async () => {
-      const [currentTab] = await browser.tabs.query({
-        active: true,
-        currentWindow: true,
-      })
+      try {
+        const [currentTab] = await browser.tabs.query({
+          active: true,
+          currentWindow: true,
+        })
 
-      state.tempAccess = syncTempAccess(state.tempAccess)
-      handlePageLoad({url: currentTab.url, tabId: currentTab.id}, state)
+        state.tempAccess = syncTempAccess(state.tempAccess)
+        handlePageLoad({url: currentTab.url, tabId: currentTab.id}, state)
+      } catch (e) {
+        errorHandler(e as Error, {extra: 'functionName: onActivated'})
+      }
     })
 
     browser.windows.onFocusChanged.addListener(async windowId => {
@@ -59,21 +63,31 @@ const main = () => {
         return
       }
 
-      const [currentTab] = await browser.tabs.query({
-        active: true,
-        currentWindow: true,
-      })
+      try {
+        const [currentTab] = await browser.tabs.query({
+          active: true,
+          currentWindow: true,
+        })
 
-      state.tempAccess = syncTempAccess(state.tempAccess)
-      handlePageLoad({url: currentTab.url, tabId: currentTab.id}, state)
+        state.tempAccess = syncTempAccess(state.tempAccess)
+        handlePageLoad({url: currentTab.url, tabId: currentTab.id}, state)
+      } catch (e) {
+        errorHandler(e as Error, {extra: 'functionName: onFocusChanged'})
+      }
     })
 
     browser.tabs.onUpdated.addListener((tabId, _, tab) => {
-      const isStopPage = tab.url.includes(browser.runtime.getURL('/stop.html'))
+      try {
+        const isStopPage = tab.url.includes(
+          browser.runtime.getURL('/stop.html'),
+        )
 
-      if (!isStopPage) {
-        state.tempAccess = syncTempAccess(state.tempAccess)
-        handlePageLoad({url: tab.url, tabId}, state)
+        if (!isStopPage) {
+          state.tempAccess = syncTempAccess(state.tempAccess)
+          handlePageLoad({url: tab.url, tabId}, state)
+        }
+      } catch (e) {
+        errorHandler(e as Error, {extra: 'functionName: onUpdated'})
       }
     })
   })

@@ -9,6 +9,7 @@ import browser from 'webextension-polyfill'
 import {MiuStorage, TempAccess} from '@types'
 import {DefaultQuoteWithoutShow} from '../../allQuotes'
 import {BackgroundState} from '../index'
+import {errorHandler} from '@ui'
 
 export const syncTempAccess = (tempAccess: TempAccess[]): TempAccess[] => {
   const updated = tempAccess.filter(
@@ -22,20 +23,24 @@ export const syncTempAccess = (tempAccess: TempAccess[]): TempAccess[] => {
 }
 
 export const reloadIfStopPage = async () => {
-  const tabs = await browser.tabs.query({
-    active: true,
-    lastFocusedWindow: true,
-  })
+  try {
+    const tabs = await browser.tabs.query({
+      active: true,
+      lastFocusedWindow: true,
+    })
 
-  if (!(tabs && tabs[0] && tabs[0].url)) {
-    return
-  }
+    if (!(tabs && tabs[0] && tabs[0].url)) {
+      return
+    }
 
-  const {url} = tabs[0]
+    const {url} = tabs[0]
 
-  const isStopPage = url.includes(browser.runtime.getURL('/stop.html'))
-  if (isStopPage) {
-    browser.tabs.update(tabs[0].id, {url})
+    const isStopPage = url.includes(browser.runtime.getURL('/stop.html'))
+    if (isStopPage) {
+      browser.tabs.update(tabs[0].id, {url})
+    }
+  } catch (e) {
+    errorHandler(e as Error, {extra: 'functionName: reloadIfStopPage'})
   }
 }
 

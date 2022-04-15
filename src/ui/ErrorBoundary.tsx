@@ -28,7 +28,10 @@ export const ErrorFallback = ({error, resetErrorBoundary}: FallbackProps) => {
   )
 }
 
-export const errorHandler = (error: Error, info: {componentStack: string}) => {
+export const errorHandler = (
+  error: Error,
+  info: {componentStack?: string; extra?: string},
+) => {
   console.error(error)
   Sentry.withScope(scope => {
     scope.setExtras(info)
