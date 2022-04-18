@@ -19,14 +19,10 @@ const options: SelectProps<number>['options'] = [
 ]
 
 export const NumberOfBreathSetting = () => {
-  const [selected, setSelected] = useSyncedState<number>('numBreath')
+  const [selected, setSelected] = useSyncedState('numBreath')
   const [lockedStatus, setLockedStatus] = useState<'unlocked' | 'locked'>(
     'locked',
   )
-
-  if (selected === null) {
-    return null
-  }
 
   return (
     <div
@@ -35,12 +31,14 @@ export const NumberOfBreathSetting = () => {
       } relative isolate`}
     >
       <div className="w-[150px]">
-        <Select
-          disabled={lockedStatus === 'locked'}
-          onSelectValue={value => setSelected(value)}
-          selectedValue={selected}
-          options={options}
-        />
+        {selected && (
+          <Select
+            disabled={lockedStatus === 'locked'}
+            onSelectValue={value => setSelected(value)}
+            selectedValue={selected}
+            options={options}
+          />
+        )}
       </div>
       {lockedStatus === 'locked' && (
         <div className="z-10 mx-auto w-full">

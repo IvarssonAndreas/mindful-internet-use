@@ -8,7 +8,7 @@ interface SectionContainerProps {
 
 export const SectionContainer = ({children}: SectionContainerProps) => {
   return (
-    <div className="space-y-2 rounded-xl bg-mui-blue p-6 shadow-sm shadow-mui-blue-darkest">
+    <div className="flex flex-col justify-between space-y-6 rounded-xl bg-mui-blue px-8 py-7 shadow-sm shadow-mui-blue-darkest">
       <ErrorBoundary FallbackComponent={ErrorFallback} onError={errorHandler}>
         {children}
       </ErrorBoundary>

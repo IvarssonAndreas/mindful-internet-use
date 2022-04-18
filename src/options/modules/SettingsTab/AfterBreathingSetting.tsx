@@ -3,8 +3,7 @@ import {SectionContainer, SectionHeading, Switch} from '@option-ui'
 import {useSyncedState} from '@utils'
 
 export const AfterBreathingSetting = () => {
-  const [copyAfterBreathing, setCopyAfterBreathing] =
-    useSyncedState<boolean>('copy')
+  const [copyAfterBreathing, setCopyAfterBreathing] = useSyncedState('copy')
 
   const selectedStyle = 'text-amber-50'
 

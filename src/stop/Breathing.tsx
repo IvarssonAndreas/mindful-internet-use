@@ -1,29 +1,35 @@
 import React, {ReactNode, useEffect, useState} from 'react'
 import {AnimatePresence, motion} from 'framer-motion'
 import {useInterval} from '@utils'
-
-const BREATH_DURATION = 10
+import {BreathingPattern} from '../breathing-patterns'
+import {BreathingLabel} from '@types'
 
 interface BreathingProps {
   onComplete: () => void
   numberOfBreath: number
+  breathingPattern: BreathingPattern
 }
 
-export const Breathing = ({onComplete, numberOfBreath}: BreathingProps) => {
+export const Breathing = ({
+  onComplete,
+  numberOfBreath,
+  breathingPattern,
+}: BreathingProps) => {
   const numberOfBreathLeft = useNumberOfBreathLeft(
-    BREATH_DURATION,
+    breathingPattern.duration,
     numberOfBreath,
   )
 
-  const state = useBreathState(BREATH_DURATION)
-  const times = [0, 0.4, 0.6, 1]
-  const scale = [1, 1.2, 1.2, 1]
+  const label = useBreatheLabel(
+    breathingPattern.duration,
+    breathingPattern.getBreathingLabel,
+  )
 
   useEffect(() => {
     if (numberOfBreathLeft <= 0) {
       onComplete()
     }
-  }, [numberOfBreathLeft])
+  }, [numberOfBreathLeft, onComplete])
 
   if (numberOfBreathLeft < 0) {
     throw new Error(
@@ -32,21 +38,28 @@ export const Breathing = ({onComplete, numberOfBreath}: BreathingProps) => {
   }
 
   if (numberOfBreathLeft === 0) {
-    return <div>hej</div>
+    return null
   }
 
   return (
     <AnimatePresence>
-      <Container times={times} breathDuration={BREATH_DURATION} scale={scale}>
-        <Content state={state} breathLeft={numberOfBreathLeft} />
-        <Rotation breathDuration={BREATH_DURATION} />
-        <Border />
+      <Container
+        times={breathingPattern.times}
+        breathDuration={breathingPattern.duration}
+        scale={breathingPattern.scale}
+      >
+        <Content label={label} breathLeft={numberOfBreathLeft} />
+        <Rotation breathDuration={breathingPattern.duration} />
+        <Border borderColorInterval={breathingPattern.borderColorInterval} />
       </Container>
     </AnimatePresence>
   )
 }
 
-const useBreathState = (breathDurationInSeconds: number) => {
+const useBreatheLabel = (
+  breathDurationInSeconds: number,
+  getLabel: (durationPassed: number) => BreathingLabel,
+) => {
   const [durationPassedInSeconds, setDurationPassed] = useState(0)
 
   useInterval(() => {
@@ -58,7 +71,13 @@ const useBreathState = (breathDurationInSeconds: number) => {
     })
   }, 1000)
 
-  return getState(durationPassedInSeconds)
+  if (durationPassedInSeconds >= breathDurationInSeconds) {
+    throw new Error(
+      `Duration should never be >= than ${breathDurationInSeconds} was "${durationPassedInSeconds}"`,
+    )
+  }
+
+  return getLabel(durationPassedInSeconds)
 }
 
 const useNumberOfBreathLeft = (
@@ -92,7 +111,6 @@ const Container = ({
         times,
         repeat: Infinity,
         ease: 'linear',
-        repeatType: 'reverse',
       }}
       exit={{opacity: 0}}
       animate={{scale}}
@@ -103,26 +121,16 @@ const Container = ({
   )
 }
 
-type State = 'Breathe In' | 'Hold' | 'Breathe Out'
-
-const getState = (durationPassed: number): State => {
-  if (durationPassed < 4) {
-    return 'Breathe In'
-  } else if (durationPassed >= 4 && durationPassed < 6) {
-    return 'Hold'
-  } else if (durationPassed >= 6 && durationPassed <= 10) {
-    return 'Breathe Out'
-  }
-
-  throw new Error(
-    `Duration should never be larger than 10 was "${durationPassed}"`,
-  )
-}
-
-const Content = ({state, breathLeft}: {state: State; breathLeft: number}) => {
+const Content = ({
+  label,
+  breathLeft,
+}: {
+  label: BreathingLabel
+  breathLeft: number
+}) => {
   return (
     <div className="absolute top-0 left-0 z-10 flex h-full w-full flex-col items-center justify-center rounded-full bg-mui-blue-dark">
-      <div className="text-[32px] tracking-wide text-amber-50">{state}</div>
+      <div className="text-[32px] tracking-wide text-amber-50">{label}</div>
       <div className="mt-2 text-center text-4xl text-mui-gold">
         {breathLeft}
       </div>
@@ -146,18 +154,11 @@ const Rotation = ({breathDuration}: {breathDuration: number}) => {
   )
 }
 
-const Border = () => {
+const Border = ({borderColorInterval}: {borderColorInterval: string}) => {
   return (
     <div
       style={{
-        background: `conic-gradient(
-                rgb(255, 190, 121) 0%,
-                rgb(255, 190, 121) 40%,
-                #fff 40%,
-                #fff 60%,
-                rgb(255, 190, 121) 60%,
-                rgb(255, 190, 121) 100%
-        )`,
+        background: `conic-gradient(${borderColorInterval})`,
       }}
       className="absolute -left-[20px] -top-[20px] h-[340px] w-[340px] rounded-full"
     />

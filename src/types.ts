@@ -21,4 +21,11 @@ export type MiuStorage = {
   dangerList: string[]
   userQuotes: string[]
   numBreath: number
+  selectedBreathingPattern: BreathingPatternName
 }
+
+export type MiuStorageKey = keyof MiuStorage
+
+export type BreathingPatternName = '424' | '4444' | '55' | '478' | '4242'
+
+export type BreathingLabel = 'Breathe In' | 'Hold' | 'Breathe Out'

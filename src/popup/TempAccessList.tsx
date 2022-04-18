@@ -5,7 +5,7 @@ import dayjs from 'dayjs'
 import {TrashIcon} from '@heroicons/react/solid'
 
 export const TempAccessList = () => {
-  const [tempAccess, setTempAccess] = useSyncedState<TempAccess[]>('tempAccess')
+  const [tempAccess, setTempAccess] = useSyncedState('tempAccess')
 
   const handleRemove = (itemToRemove: TempAccess) => {
     if (tempAccess) {

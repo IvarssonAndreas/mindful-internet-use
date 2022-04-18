@@ -1,8 +1,10 @@
 import {useEffect, useState} from 'react'
 import browser from 'webextension-polyfill'
 import {useErrorHandler} from 'react-error-boundary'
-export function useSyncedState<Data = unknown>(storageKey: string) {
-  const [localState, setLocalState] = useState<Data | null>(null)
+import {MiuStorage, MiuStorageKey} from '@types'
+
+export function useSyncedState<Key extends MiuStorageKey>(storageKey: Key) {
+  const [localState, setLocalState] = useState<MiuStorage[Key] | null>(null)
   const handleError = useErrorHandler()
 
   useEffect(() => {
@@ -23,7 +25,7 @@ export function useSyncedState<Data = unknown>(storageKey: string) {
     getStorage().catch(e => handleError(e))
   }, [handleError, storageKey])
 
-  const setState = (newState: Data) => {
+  const setState = (newState: MiuStorage[Key]) => {
     setLocalState(newState)
     browser.storage.sync.set({[storageKey]: newState})
   }
