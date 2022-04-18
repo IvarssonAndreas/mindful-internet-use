@@ -1,10 +1,10 @@
 import React from 'react'
 
-import {InputList, SectionContainer, SectionHeading} from '@option-ui'
+import {InputList} from '@option-ui'
 import {useSyncedState} from '@utils'
 
 export const MindlessUrlList = () => {
-  const [urls, setUrls] = useSyncedState<string[]>('dangerList')
+  const [urls, setUrls] = useSyncedState('dangerList')
 
   if (!urls) {
     return null

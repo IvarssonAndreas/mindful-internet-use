@@ -4,7 +4,7 @@ import {InputList, SectionContainer, SectionHeading} from '@option-ui'
 import {useSyncedState} from '@utils'
 
 export const UserQuoteList = () => {
-  const [quotes, setQuotes] = useSyncedState<string[]>('userQuotes')
+  const [quotes, setQuotes] = useSyncedState('userQuotes')
 
   if (!quotes) {
     return null

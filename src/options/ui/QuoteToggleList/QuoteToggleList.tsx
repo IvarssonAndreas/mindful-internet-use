@@ -11,8 +11,7 @@ export const QuoteToggleList = () => {
   const [isMajorSwitchEnabled, setIsMajorSwitchEnabled] = useState<
     boolean | null
   >(null)
-  const [defaultQuotes, setDefaultQuotes] =
-    useSyncedState<Quote[]>('defaultQuotes')
+  const [defaultQuotes, setDefaultQuotes] = useSyncedState('defaultQuotes')
 
   useEffect(() => {
     setIsMajorSwitchEnabled(isAnyShow(defaultQuotes ?? []))

@@ -7,7 +7,7 @@ const INITIAL_SECONDS_LEFT = 60
 export const OnOffSwitch = () => {
   const [secondsLeft, setSecondsLeft] = useState(INITIAL_SECONDS_LEFT)
   const [syncedIsMIUEnabled, setSyncedIsMIUEnabled] =
-    useSyncedState<boolean>('isMIUEnabled')
+    useSyncedState('isMIUEnabled')
   const [state, setState] = useState<'off' | 'on' | 'running'>('on')
 
   useEffect(() => {

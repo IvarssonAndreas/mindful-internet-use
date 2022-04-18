@@ -59,7 +59,7 @@ const throwUnhandledStopStep = (currentStep: never): never => {
 }
 
 const useIsCopyQuote = () => {
-  const [isCopy] = useSyncedState<boolean>('copy')
+  const [isCopy] = useSyncedState('copy')
 
   return isCopy
 }
