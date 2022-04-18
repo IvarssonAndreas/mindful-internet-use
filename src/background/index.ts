@@ -76,7 +76,7 @@ const main = () => {
       }
     })
 
-    browser.tabs.onUpdated.addListener((tabId, _, tab) => {
+    browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
       try {
         const isStopPage = tab.url.includes(
           browser.runtime.getURL('/stop.html'),
@@ -87,7 +87,9 @@ const main = () => {
           handlePageLoad({url: tab.url, tabId}, state)
         }
       } catch (e) {
-        errorHandler(e as Error, {extra: 'functionName: onUpdated'})
+        errorHandler(e as Error, {
+          extra: JSON.stringify({functionName: 'onUpdated', changeInfo}),
+        })
       }
     })
   })

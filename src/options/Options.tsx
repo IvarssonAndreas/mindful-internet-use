@@ -28,7 +28,7 @@ const Options = () => {
 
           <a
             href="https://chrome.google.com/webstore/detail/mindful-internet-use/hieolpjdilnibgamiafklnlcmagdngoo"
-            className="decoration absolute bottom-4 inline-block flex w-full items-center justify-center px-3 pb-1 pt-4 text-center text-sm font-bold text-mui-blue transition hover:scale-x-105  hover:cursor-pointer"
+            className="decoration absolute bottom-4 inline-block flex w-full items-center justify-center rounded px-3 pb-2 pt-2 text-center text-sm font-bold text-mui-blue transition  hover:cursor-pointer focus-visible:outline-transparent"
           >
             <StarIcon className="mr-2 h-5 w-5" />
             I&#39;d love to hear your feedback

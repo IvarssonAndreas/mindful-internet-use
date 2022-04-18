@@ -3,13 +3,13 @@ import {SectionContainer, SectionHeading, TabHeading} from '@option-ui'
 import {AfterBreathingSetting} from './AfterBreathingSetting'
 import {NumberOfBreathSetting} from './NumberOfBreathSetting'
 import {SettingsIcon} from '@utils'
-import {ErrorBoundary} from 'react-error-boundary'
-import {ErrorFallback, errorHandler} from '@ui'
-import {MindlessUrlList} from '../WebsitesTab/MindlessUrlList'
+import {SelectBreathingPattern} from '../../../breathing-patterns/SelectBreathingPattern'
+import {Button} from '@ui'
+import {RadioButton} from '../../../ui/RadioButton'
 
 export const SettingsTab = () => {
   return (
-    <div className="max-w-xl space-y-6 text-amber-50">
+    <div className="space-y-6 text-amber-50">
       <TabHeading>
         <SettingsIcon />
         Settings

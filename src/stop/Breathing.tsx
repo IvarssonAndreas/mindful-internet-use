@@ -1,29 +1,35 @@
 import React, {ReactNode, useEffect, useState} from 'react'
 import {AnimatePresence, motion} from 'framer-motion'
 import {useInterval} from '@utils'
-
-const BREATH_DURATION = 10
+import {BreathingPattern} from '../breathing-patterns'
+import {BreathingLabel} from '@types'
 
 interface BreathingProps {
   onComplete: () => void
   numberOfBreath: number
+  breathingPattern: BreathingPattern
 }
 
-export const Breathing = ({onComplete, numberOfBreath}: BreathingProps) => {
+export const Breathing = ({
+  onComplete,
+  numberOfBreath,
+  breathingPattern,
+}: BreathingProps) => {
   const numberOfBreathLeft = useNumberOfBreathLeft(
-    BREATH_DURATION,
+    breathingPattern.duration,
     numberOfBreath,
   )
 
-  const state = useBreathState(BREATH_DURATION)
-  const times = [0, 0.4, 0.6, 1]
-  const scale = [1, 1.2, 1.2, 1]
+  const label = useBreatheLabel(
+    breathingPattern.duration,
+    breathingPattern.getBreathingLabel,
+  )
 
   useEffect(() => {
     if (numberOfBreathLeft <= 0) {
       onComplete()
     }
-  }, [numberOfBreathLeft])
+  }, [numberOfBreathLeft, onComplete])
 
   if (numberOfBreathLeft < 0) {
     throw new Error(
@@ -115,26 +121,16 @@ const Container = ({
   )
 }
 
-type State = 'Breathe In' | 'Hold' | 'Breathe Out'
-
-const getState = (durationPassed: number): State => {
-  if (durationPassed < 4) {
-    return 'Breathe In'
-  } else if (durationPassed >= 4 && durationPassed < 6) {
-    return 'Hold'
-  } else if (durationPassed >= 6 && durationPassed <= 10) {
-    return 'Breathe Out'
-  }
-
-  throw new Error(
-    `Duration should never be larger than 10 was "${durationPassed}"`,
-  )
-}
-
-const Content = ({state, breathLeft}: {state: State; breathLeft: number}) => {
+const Content = ({
+  label,
+  breathLeft,
+}: {
+  label: BreathingLabel
+  breathLeft: number
+}) => {
   return (
     <div className="absolute top-0 left-0 z-10 flex h-full w-full flex-col items-center justify-center rounded-full bg-mui-blue-dark">
-      <div className="text-[32px] tracking-wide text-amber-50">{state}</div>
+      <div className="text-[32px] tracking-wide text-amber-50">{label}</div>
       <div className="mt-2 text-center text-4xl text-mui-gold">
         {breathLeft}
       </div>

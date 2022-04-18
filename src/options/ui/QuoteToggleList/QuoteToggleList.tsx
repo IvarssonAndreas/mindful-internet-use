@@ -34,30 +34,35 @@ export const QuoteToggleList = () => {
   }
 
   return (
-    <ul className="max-h-[400px] overflow-y-auto">
+    <div>
       {isMajorSwitchEnabled !== null && (
-        <QuoteToggleListItem
-          enabled={isMajorSwitchEnabled}
-          onToggle={enabled => handleAllSwitch(enabled)}
-        >
-          <SectionHeading>Default quotes</SectionHeading>
-        </QuoteToggleListItem>
+        <div className="sticky top-0 z-40 pr-2">
+          <QuoteToggleListItem
+            heading
+            enabled={isMajorSwitchEnabled}
+            onToggle={enabled => handleAllSwitch(enabled)}
+          >
+            <SectionHeading className="mb-0">Default quotes</SectionHeading>
+          </QuoteToggleListItem>
+        </div>
       )}
-      {defaultQuotes.map(quote => (
-        <QuoteToggleListItem
-          key={quote.qoute + (quote.author ?? '')}
-          onToggle={enabled => handleItemSwitch(enabled, quote)}
-          enabled={quote.show}
-        >
-          <div>
-            {quote.qoute}
-            <span className="ml-2 italic text-mui-gold">
-              {quote.author ?? ''}
-            </span>
-          </div>{' '}
-        </QuoteToggleListItem>
-      ))}
-    </ul>
+      <ul className="max-h-[400px] overflow-y-auto">
+        {defaultQuotes.map(quote => (
+          <QuoteToggleListItem
+            key={quote.qoute + (quote.author ?? '')}
+            onToggle={enabled => handleItemSwitch(enabled, quote)}
+            enabled={quote.show}
+          >
+            <div>
+              {quote.qoute}
+              <span className="ml-2 italic text-mui-gold">
+                {quote.author ?? ''}
+              </span>
+            </div>{' '}
+          </QuoteToggleListItem>
+        ))}
+      </ul>
+    </div>
   )
 }
 

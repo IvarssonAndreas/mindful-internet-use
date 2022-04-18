@@ -174,7 +174,7 @@ const InputRow = forwardRef(
           onChange={e => onChange(e.target.value)}
           type="text"
           value={value}
-          className="w-full rounded-xl border-2 border-transparent bg-inherit p-2 text-amber-50 transition    focus:border-amber-50   focus:outline-none"
+          className="w-full rounded-xl border-2 border-transparent bg-inherit p-3 text-amber-50 transition    focus:border-amber-50   focus:outline-none"
         />
         <button
           disabled={disabled}
