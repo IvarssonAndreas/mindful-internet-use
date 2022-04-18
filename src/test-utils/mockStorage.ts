@@ -11,6 +11,7 @@ export function buildStorage(overrides: Partial<MiuStorage> = {}): MiuStorage {
     defaultQuotes: [],
     copy: false,
     numBreath: 4,
+    selectedBreathingPattern: '424',
     ...overrides,
   }
 }

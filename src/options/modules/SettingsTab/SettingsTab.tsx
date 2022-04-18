@@ -26,6 +26,10 @@ export const SettingsTab = () => {
         <SectionHeading>Number of breath on breathing timer</SectionHeading>
         <NumberOfBreathSetting />
       </SectionContainer>
+
+      <SectionContainer>
+        <SelectBreathingPattern />
+      </SectionContainer>
     </div>
   )
 }

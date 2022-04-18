@@ -2,8 +2,13 @@ import React, {useEffect, useState} from 'react'
 import {Breathing} from './Breathing'
 import {CompleteBreathing} from './CompleteBreathing'
 import {CopyQuote} from './CopyQuote'
-import {Logo, useNumberOfBreath, useSyncedState} from '@utils'
-import browser from 'webextension-polyfill'
+import {
+  Logo,
+  useBreathingPattern,
+  useNumberOfBreath,
+  useSyncedState,
+} from '@utils'
+
 import {motion} from 'framer-motion'
 
 type Step = 'breathing' | 'completeBreathing' | 'copyQuote'
@@ -12,6 +17,7 @@ const Stop = () => {
   const numberOfBreath = useNumberOfBreath()
   const isCopyQuote = useIsCopyQuote()
   const [currentStep, setCurrentStep] = useState<Step>('breathing')
+  const breathingPattern = useBreathingPattern()
 
   return (
     <motion.div
@@ -32,8 +38,9 @@ const Stop = () => {
       {(() => {
         switch (currentStep) {
           case 'breathing':
-            return numberOfBreath ? (
+            return numberOfBreath && breathingPattern ? (
               <Breathing
+                breathingPattern={breathingPattern}
                 numberOfBreath={numberOfBreath}
                 onComplete={() =>
                   setCurrentStep(

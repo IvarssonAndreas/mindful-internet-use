@@ -56,12 +56,14 @@ export const syncStorage = async (
     tempAccess = [],
     copy = false,
     isMIUEnabled = true,
+    selectedBreathingPattern = '424',
   } = (await browser.storage.sync.get([
     'defaultQuotes',
     'copy',
     'dangerList',
     'tempAccess',
     'userQuotes',
+    'selectedBreathingPattern',
     'isMIUEnabled',
     'numBreath',
   ])) as MiuStorage
@@ -72,6 +74,7 @@ export const syncStorage = async (
     dangerList,
     defaultQuotes: syncQuotes(rawQuotes, defaultQuotes),
     tempAccess,
+    selectedBreathingPattern,
     copy,
     isMIUEnabled,
   })

@@ -3,7 +3,8 @@ import {Dialog} from '@headlessui/react'
 import {motion} from 'framer-motion'
 import {XIcon} from '@heroicons/react/outline'
 import {Breathing} from '../stop/Breathing'
-import {useNumberOfBreath} from '@utils'
+import {useBreathingPattern, useNumberOfBreath, useSyncedState} from '@utils'
+import {BreathingPattern, breathingPatterns} from '../breathing-patterns'
 
 interface BreathingOverlayProps {
   onClose: () => void
@@ -15,8 +16,9 @@ export const BreathingOverlay = ({
   onBreathingComplete,
 }: BreathingOverlayProps) => {
   const numberOfBreath = useNumberOfBreath()
+  const breathingPattern = useBreathingPattern()
 
-  if (numberOfBreath === null) {
+  if (numberOfBreath === null || breathingPattern === null) {
     return null
   }
 
@@ -38,12 +40,11 @@ export const BreathingOverlay = ({
       </button>
       <Dialog.Overlay className="fixed inset-0  bg-gradient-to-tr from-mui-blue-alpha to-mui-blue-dark" />
       <div className="my-8 inline-block w-full max-w-md transform  rounded-2xl  p-6 text-left align-middle  transition-all">
-        {numberOfBreath && (
-          <Breathing
-            onComplete={() => onBreathingComplete()}
-            numberOfBreath={numberOfBreath}
-          />
-        )}
+        <Breathing
+          breathingPattern={breathingPattern}
+          onComplete={() => onBreathingComplete()}
+          numberOfBreath={numberOfBreath}
+        />
       </div>
     </Dialog>
   )

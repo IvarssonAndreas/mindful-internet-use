@@ -32,21 +32,28 @@ export const Breathing = ({onComplete, numberOfBreath}: BreathingProps) => {
   }
 
   if (numberOfBreathLeft === 0) {
-    return <div>hej</div>
+    return null
   }
 
   return (
     <AnimatePresence>
-      <Container times={times} breathDuration={BREATH_DURATION} scale={scale}>
-        <Content state={state} breathLeft={numberOfBreathLeft} />
-        <Rotation breathDuration={BREATH_DURATION} />
-        <Border />
+      <Container
+        times={breathingPattern.times}
+        breathDuration={breathingPattern.duration}
+        scale={breathingPattern.scale}
+      >
+        <Content label={label} breathLeft={numberOfBreathLeft} />
+        <Rotation breathDuration={breathingPattern.duration} />
+        <Border borderColorInterval={breathingPattern.borderColorInterval} />
       </Container>
     </AnimatePresence>
   )
 }
 
-const useBreathState = (breathDurationInSeconds: number) => {
+const useBreatheLabel = (
+  breathDurationInSeconds: number,
+  getLabel: (durationPassed: number) => BreathingLabel,
+) => {
   const [durationPassedInSeconds, setDurationPassed] = useState(0)
 
   useInterval(() => {
@@ -58,7 +65,13 @@ const useBreathState = (breathDurationInSeconds: number) => {
     })
   }, 1000)
 
-  return getState(durationPassedInSeconds)
+  if (durationPassedInSeconds >= breathDurationInSeconds) {
+    throw new Error(
+      `Duration should never be >= than ${breathDurationInSeconds} was "${durationPassedInSeconds}"`,
+    )
+  }
+
+  return getLabel(durationPassedInSeconds)
 }
 
 const useNumberOfBreathLeft = (
@@ -92,7 +105,6 @@ const Container = ({
         times,
         repeat: Infinity,
         ease: 'linear',
-        repeatType: 'reverse',
       }}
       exit={{opacity: 0}}
       animate={{scale}}
@@ -146,18 +158,11 @@ const Rotation = ({breathDuration}: {breathDuration: number}) => {
   )
 }
 
-const Border = () => {
+const Border = ({borderColorInterval}: {borderColorInterval: string}) => {
   return (
     <div
       style={{
-        background: `conic-gradient(
-                rgb(255, 190, 121) 0%,
-                rgb(255, 190, 121) 40%,
-                #fff 40%,
-                #fff 60%,
-                rgb(255, 190, 121) 60%,
-                rgb(255, 190, 121) 100%
-        )`,
+        background: `conic-gradient(${borderColorInterval})`,
       }}
       className="absolute -left-[20px] -top-[20px] h-[340px] w-[340px] rounded-full"
     />
