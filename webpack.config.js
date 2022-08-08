@@ -4,14 +4,12 @@ const fileSystem = require('fs-extra')
 const env = require('./utils/env')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const ASSET_PATH = process.env.ASSET_PATH || '/'
-process.env.SENTRY_DSN = env.SENTRY_DSN
 const alias = {
   '@option-ui': path.resolve(__dirname, './src/options/ui'),
   '@ui': path.resolve(__dirname, './src/ui'),
@@ -59,8 +57,7 @@ const options = {
     clean: true,
     publicPath: ASSET_PATH,
   },
-  devtool:
-    process.env.NODE_ENV === 'development' ? 'eval-source-map' : 'source-map',
+
   module: {
     rules: [
       {
@@ -111,7 +108,6 @@ const options = {
     new webpack.ProgressPlugin(),
     // expose and write the allowed env vars on the compiled bundle
     new webpack.EnvironmentPlugin(['NODE_ENV']),
-    new webpack.EnvironmentPlugin(['SENTRY_DSN']),
     new MiniCssExtractPlugin({
       filename:
         env.NODE_ENV === 'development'

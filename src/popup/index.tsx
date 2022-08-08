@@ -5,15 +5,12 @@ import '../index.css'
 import {Popup} from './Popup'
 import {ErrorBoundary} from 'react-error-boundary'
 import {ErrorFallbackPage, errorHandler} from '@ui'
-import {SentryInit} from '@lib'
 
 const ui = (
   <ErrorBoundary FallbackComponent={ErrorFallbackPage} onError={errorHandler}>
     <Popup />
   </ErrorBoundary>
 )
-
-SentryInit()
 
 render(ui, window.document.querySelector('#root'))
 

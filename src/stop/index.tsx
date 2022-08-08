@@ -7,14 +7,12 @@ import Stop from './Stop'
 
 import {ErrorFallbackPage, errorHandler} from '@ui'
 import {ErrorBoundary} from 'react-error-boundary'
-import {SentryInit} from '@lib'
 
 const ui = (
   <ErrorBoundary FallbackComponent={ErrorFallbackPage} onError={errorHandler}>
     <Stop />
   </ErrorBoundary>
 )
-SentryInit()
 
 render(ui, window.document.querySelector('#root'))
 

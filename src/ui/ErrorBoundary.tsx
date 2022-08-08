@@ -1,6 +1,5 @@
 import React from 'react'
 
-import * as Sentry from '@sentry/react'
 import {TabHeading} from '@option-ui'
 import {Button} from '@ui'
 import {FallbackProps} from 'react-error-boundary'
@@ -33,8 +32,4 @@ export const errorHandler = (
   info: {componentStack?: string; extra?: string} = {},
 ) => {
   console.error(error)
-  Sentry.withScope(scope => {
-    scope.setExtras(info)
-    Sentry.captureException(error)
-  })
 }
