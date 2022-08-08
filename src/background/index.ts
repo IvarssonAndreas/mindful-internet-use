@@ -9,7 +9,6 @@ import {
 import {defaultQuotes} from '../allQuotes'
 import {MiuStorage} from '@types'
 import {errorHandler} from '@ui'
-import {SentryInit} from '@lib'
 
 export type BackgroundState = {
   tempAccess: MiuStorage['tempAccess']
@@ -96,7 +95,6 @@ const main = () => {
 }
 
 try {
-  SentryInit()
   main()
 } catch (e) {
   errorHandler(e)
