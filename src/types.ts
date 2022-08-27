@@ -22,6 +22,7 @@ export type MiuStorage = {
   userQuotes: string[]
   numBreath: number
   selectedBreathingPattern: BreathingPatternName
+  showQuoteWhileBreathing: boolean
 }
 
 export type MiuStorageKey = keyof MiuStorage

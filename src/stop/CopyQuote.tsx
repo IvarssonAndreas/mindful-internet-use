@@ -1,21 +1,17 @@
-import React, {useEffect, useRef, useState} from 'react'
-import {Select, SelectProps} from '@option-ui'
-import {Button} from '@ui'
+import React, {useState} from 'react'
 import {motion} from 'framer-motion'
-import dayjs from 'dayjs'
 import {StopContentWrapper} from './StopContentWrapper'
 import {CompleteButtons} from './CompleteButtons'
-import {useQuote} from './useQuote'
+import type {Quote as QuoteType} from '@types'
 
-export const CopyQuote = () => {
-  const quote = useQuote()
+export const CopyQuote = ({quote}: {quote: QuoteType}) => {
   const [isComplete, setIsComplete] = useState(false)
   const [enteredText, setEnteredText] = useState('')
   const [isMiss, setIsMiss] = useState(false)
 
   const handleCopy = (newEnteredText: string) => {
     setIsMiss(false)
-    const quoteText = quote!.qoute
+    const quoteText = quote.qoute
 
     const isCompleteMatch =
       quoteText.toLocaleLowerCase() === newEnteredText.toLocaleLowerCase()

@@ -18,10 +18,16 @@ export const SettingsTab = () => {
       </TabHeading>
 
       <SectionContainer>
-        <SectionHeading>
-          What to do before accessing a mindless website
-        </SectionHeading>
-        <AfterBreathingSetting />
+        <SettingSwitchContainer>
+          <SectionHeading>Show quote while breathing</SectionHeading>
+          <QuoteWhileBreathing />
+        </SettingSwitchContainer>
+        <SettingSwitchContainer>
+          <SectionHeading>
+            What to do before accessing a mindless website
+          </SectionHeading>
+          <CopyAfterBreathingSetting />
+        </SettingSwitchContainer>
       </SectionContainer>
 
       <SectionContainer>

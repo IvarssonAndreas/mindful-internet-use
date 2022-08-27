@@ -1,28 +1,13 @@
 import React from 'react'
-import {motion} from 'framer-motion'
-
 import {CompleteButtons} from './CompleteButtons'
-import {useQuote} from './useQuote'
 import {StopContentWrapper} from './StopContentWrapper'
+import {Quote} from './Quote'
+import type {Quote as QuoteType} from '@types'
 
-export const CompleteBreathing = () => {
-  const quote = useQuote()
-
-  if (!quote) {
-    return null
-  }
-
+export const CompleteBreathing = ({quote}: {quote: QuoteType}) => {
   return (
     <StopContentWrapper>
-      <motion.div
-        initial={{opacity: 0}}
-        animate={{opacity: 1}}
-        transition={{duration: 0.5}}
-        className=" flex flex-col text-2xl leading-relaxed"
-      >
-        <div className="text-amber-50">{quote.qoute}</div>
-        <div className="text-right text-mui-gold">{quote.author}</div>
-      </motion.div>
+      <Quote quote={quote} />
       <CompleteButtons />
     </StopContentWrapper>
   )
