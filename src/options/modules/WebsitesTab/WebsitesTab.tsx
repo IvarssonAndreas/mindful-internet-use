@@ -4,8 +4,6 @@ import {SectionContainer, SectionHeading, TabHeading} from '@option-ui'
 
 import {MindlessUrlList} from './MindlessUrlList'
 import {MindlessIcon} from '@utils'
-import {ErrorFallback, errorHandler} from '@ui'
-import {ErrorBoundary} from 'react-error-boundary'
 
 export const WebsitesTab = () => {
   return (

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {
   TabHeading,
   QuoteToggleList,
@@ -7,12 +7,7 @@ import {
 } from '@option-ui'
 
 import {UserQuoteList} from './UserQuoteList'
-
-import {QuotesIcon, useSyncedState} from '@utils'
-import {Quote} from '@types'
-
-import {ErrorFallback, errorHandler} from '@ui'
-import {ErrorBoundary} from 'react-error-boundary'
+import {QuotesIcon} from '@utils'
 
 export const QuotesTab = () => {
   return (

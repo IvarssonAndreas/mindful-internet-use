@@ -10,7 +10,7 @@ export const SectionHeading = ({
   className = '',
 }: SectionHeadingProps) => {
   return (
-    <h2 className={` text-xl font-bold text-mui-gold ${className} `}>
+    <h2 className={` text-lg font-bold text-mui-gold ${className} `}>
       {children}
     </h2>
   )

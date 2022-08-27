@@ -10,14 +10,41 @@ import {
 } from '@utils'
 
 import {motion} from 'framer-motion'
+import {QuoteWhileBreathing} from './QuoteWhileBreathing'
+import {useQuote} from './useQuote'
 
-type Step = 'breathing' | 'completeBreathing' | 'copyQuote'
+type Step =
+  | 'breathing'
+  | 'completeBreathing'
+  | 'copyQuote'
+  | 'breathingWithQuote'
+  | 'notInitialized'
+
+const useCurrentStep = () => {
+  const [showQuoteWhileBreathing] = useSyncedState('showQuoteWhileBreathing')
+  const [currentStep, setCurrentStep] = useState<Step>('notInitialized')
+
+  useEffect(() => {
+    if (showQuoteWhileBreathing) {
+      setCurrentStep('breathingWithQuote')
+    } else {
+      setCurrentStep('breathing')
+    }
+  }, [showQuoteWhileBreathing])
+
+  return [currentStep, setCurrentStep] as const
+}
 
 const Stop = () => {
   const numberOfBreath = useNumberOfBreath()
   const isCopyQuote = useIsCopyQuote()
-  const [currentStep, setCurrentStep] = useState<Step>('breathing')
+  const quote = useQuote()
+  const [currentStep, setCurrentStep] = useCurrentStep()
   const breathingPattern = useBreathingPattern()
+
+  if (currentStep === 'notInitialized' || quote === 'notInitialized') {
+    return null
+  }
 
   return (
     <motion.div
@@ -38,21 +65,30 @@ const Stop = () => {
       {(() => {
         switch (currentStep) {
           case 'breathing':
-            return numberOfBreath && breathingPattern ? (
-              <Breathing
-                breathingPattern={breathingPattern}
-                numberOfBreath={numberOfBreath}
-                onComplete={() =>
-                  setCurrentStep(
-                    isCopyQuote ? 'copyQuote' : 'completeBreathing',
-                  )
-                }
-              />
-            ) : null
+          case 'breathingWithQuote':
+            return (
+              <div>
+                {currentStep === 'breathingWithQuote' && (
+                  <QuoteWhileBreathing quote={quote} />
+                )}
+
+                {numberOfBreath && breathingPattern ? (
+                  <Breathing
+                    breathingPattern={breathingPattern}
+                    numberOfBreath={numberOfBreath}
+                    onComplete={() =>
+                      setCurrentStep(
+                        isCopyQuote ? 'copyQuote' : 'completeBreathing',
+                      )
+                    }
+                  />
+                ) : null}
+              </div>
+            )
           case 'completeBreathing':
-            return <CompleteBreathing />
+            return <CompleteBreathing quote={quote} />
           case 'copyQuote':
-            return <CopyQuote />
+            return <CopyQuote quote={quote} />
           default:
             throwUnhandledStopStep(currentStep)
         }

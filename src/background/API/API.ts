@@ -57,6 +57,7 @@ export const syncStorage = async (
     copy = false,
     isMIUEnabled = true,
     selectedBreathingPattern = '424',
+    showQuoteWhileBreathing = false,
   } = (await browser.storage.sync.get([
     'defaultQuotes',
     'copy',
@@ -66,8 +67,8 @@ export const syncStorage = async (
     'selectedBreathingPattern',
     'isMIUEnabled',
     'numBreath',
+    'showQuoteWhileBreathing',
   ])) as MiuStorage
-  console.log('sync')
   await browser.storage.sync.set({
     numBreath,
     userQuotes,
@@ -77,6 +78,7 @@ export const syncStorage = async (
     selectedBreathingPattern,
     copy,
     isMIUEnabled,
+    showQuoteWhileBreathing,
   })
 
   callback()

@@ -1,5 +1,4 @@
 import {BreathingLabel} from '@types'
-import React from 'react'
 import {BreathingPattern} from './index'
 import {BREATHING_COLORS} from './colors'
 

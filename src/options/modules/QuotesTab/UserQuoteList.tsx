@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React from 'react'
 
-import {InputList, SectionContainer, SectionHeading} from '@option-ui'
+import {InputList} from '@option-ui'
 import {useSyncedState} from '@utils'
 
 export const UserQuoteList = () => {

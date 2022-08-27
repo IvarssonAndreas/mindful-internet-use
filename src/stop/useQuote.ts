@@ -3,7 +3,7 @@ import browser from 'webextension-polyfill'
 import {Quote} from '@types'
 import {useErrorHandler} from 'react-error-boundary'
 export const useQuote = () => {
-  const [quote, setQuote] = useState<Quote | null>(null)
+  const [quote, setQuote] = useState<Quote | 'notInitialized'>('notInitialized')
   const handleError = useErrorHandler()
 
   useEffect(() => {

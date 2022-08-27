@@ -3,8 +3,7 @@ import {Dialog} from '@headlessui/react'
 import {motion} from 'framer-motion'
 import {XIcon} from '@heroicons/react/outline'
 import {Breathing} from '../stop/Breathing'
-import {useBreathingPattern, useNumberOfBreath, useSyncedState} from '@utils'
-import {BreathingPattern, breathingPatterns} from '../breathing-patterns'
+import {useBreathingPattern, useNumberOfBreath} from '@utils'
 
 interface BreathingOverlayProps {
   onClose: () => void

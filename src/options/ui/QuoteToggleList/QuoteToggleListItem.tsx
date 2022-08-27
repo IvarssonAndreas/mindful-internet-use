@@ -1,7 +1,5 @@
 import React, {ReactNode} from 'react'
-
 import {Switch} from '@option-ui'
-import {useIsMounted} from '@headlessui/react/dist/hooks/use-is-mounted'
 
 interface QuoteToggleListItemProps {
   children: ReactNode
