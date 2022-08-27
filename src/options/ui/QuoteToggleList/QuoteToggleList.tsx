@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react'
 
-import {SectionContainer, SectionHeading} from '@option-ui'
-import {ErrorBoundary} from 'react-error-boundary'
+import {SectionHeading} from '@option-ui'
 import {QuoteToggleListItem} from './QuoteToggleListItem'
 import {Quote} from '@types'
-import {ErrorFallback, errorHandler} from '@ui'
 import {useSyncedState} from '@utils'
 
 export const QuoteToggleList = () => {

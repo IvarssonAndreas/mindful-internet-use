@@ -1,5 +1,4 @@
 import {BreathingLabel} from '@types'
-import React from 'react'
 import {BreathingPattern} from './index'
 import {BREATHING_COLORS} from './colors'
 
@@ -11,26 +10,6 @@ const borderColorInterval = ` ${BREATHING_COLORS.in} 0%,
                  ${BREATHING_COLORS.hold} 60%,
                  ${BREATHING_COLORS.out} 60%,
                  ${BREATHING_COLORS.out} 100%`
-
-const PatternLabel = () => {
-  return (
-    <div className="flex justify-end">
-      <span className="flex-[40] text-center">Breathe In</span>
-      <span className="flex-[20] text-center">Hold</span>
-      <span className="flex-[40] text-center">Breathe Out</span>
-    </div>
-  )
-}
-
-const PatternTimes = () => {
-  return (
-    <div className="flex justify-end">
-      <span className="flex-[40] text-center">4</span>
-      <span className="flex-[20] text-center">2</span>
-      <span className="flex-[40] text-center">4</span>
-    </div>
-  )
-}
 
 const getBreathingLabel = (durationPassed: number): BreathingLabel => {
   if (durationPassed < 4) {

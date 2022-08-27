@@ -2,8 +2,7 @@ import React, {useState} from 'react'
 
 import {Select, SelectProps} from '@option-ui'
 import {useSyncedState} from '@utils'
-import {BreathingOverlay, Button, LockedBeforeBreathing} from '@ui'
-import {LockClosedIcon} from '@heroicons/react/solid'
+import {LockedBeforeBreathing} from '@ui'
 
 const options: SelectProps<number>['options'] = [
   {label: '1', value: 1},

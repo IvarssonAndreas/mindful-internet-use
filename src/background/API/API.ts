@@ -66,8 +66,8 @@ export const syncStorage = async (
     'selectedBreathingPattern',
     'isMIUEnabled',
     'numBreath',
+    'showQuoteWhileBreathing',
   ])) as MiuStorage
-  console.log('sync')
   await browser.storage.sync.set({
     numBreath,
     userQuotes,
