@@ -4,8 +4,10 @@ import {Select, SelectProps} from '@option-ui'
 import browser from 'webextension-polyfill'
 import {motion} from 'framer-motion'
 import {Button} from '@ui'
+import {useSyncedState} from '@utils'
 
 export const CompleteButtons = () => {
+  const [maxAccessTime] = useSyncedState('maxAccessTime')
   const handleAccess = async (accessTime: number | null) => {
     if (accessTime === null) {
       throw new Error('Should accessTime be able to be null here????')
@@ -13,6 +15,8 @@ export const CompleteButtons = () => {
 
     await makeUrlAccessible(accessTime).catch(e => console.error(e))
   }
+
+  if (maxAccessTime === null) return null
 
   return (
     <motion.div
@@ -25,7 +29,7 @@ export const CompleteButtons = () => {
         <Select
           autoFocus
           defaultLabel="ACCESS"
-          options={timeOptions}
+          options={timeOptions.filter(o => o.value <= maxAccessTime)}
           onSelectValue={selected => handleAccess(selected)}
           selectedValue={null}
         />
@@ -78,7 +82,7 @@ const makeUrlAccessible = async (time: number) => {
   window.location.replace(blockUrl)
 }
 
-const timeOptions: SelectProps<number>['options'] = [
+export const timeOptions: SelectProps<number>['options'] = [
   {label: '2min', value: 2},
   {label: '5min', value: 5},
   {label: '10min', value: 10},
@@ -89,3 +93,5 @@ const timeOptions: SelectProps<number>['options'] = [
   {label: '90min', value: 90},
   {label: '120min', value: 120},
 ]
+
+export type TimeOptions = typeof timeOptions[number]['value']

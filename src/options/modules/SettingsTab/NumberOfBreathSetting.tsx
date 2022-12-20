@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 
-import {Select, SelectProps} from '@option-ui'
+import {SelectProps} from '@option-ui'
 import {useSyncedState} from '@utils'
-import {LockedBeforeBreathing} from '@ui'
+import {LockedSelect} from './LockedSelect'
 
 const options: SelectProps<number>['options'] = [
   {label: '1', value: 1},
@@ -17,40 +17,23 @@ const options: SelectProps<number>['options'] = [
   {label: '10', value: 10},
 ]
 
-export const NumberOfBreathSetting = () => {
+type NumberOfBreathSettingProps = {
+  lockedStatus: 'locked' | 'unlocked'
+  onUnlock: () => void
+}
+export const NumberOfBreathSetting = ({
+  lockedStatus,
+  onUnlock,
+}: NumberOfBreathSettingProps) => {
   const [selected, setSelected] = useSyncedState('numBreath')
-  const [lockedStatus, setLockedStatus] = useState<'unlocked' | 'locked'>(
-    'locked',
-  )
 
   return (
-    <div
-      className={`${
-        lockedStatus === 'locked' ? 'h-[160px]' : ''
-      } relative isolate`}
-    >
-      <div className="w-[150px]">
-        {selected && (
-          <Select
-            disabled={lockedStatus === 'locked'}
-            onSelectValue={value => setSelected(value)}
-            selectedValue={selected}
-            options={options}
-          />
-        )}
-      </div>
-      {lockedStatus === 'locked' && (
-        <div className="z-10 mx-auto w-full">
-          <LockedBeforeBreathing
-            description={
-              <p className="text-center text-sm font-bold	 uppercase leading-7 tracking-wider text-amber-50">
-                Setting requires breathing
-              </p>
-            }
-            onUnlock={() => setLockedStatus('unlocked')}
-          />
-        </div>
-      )}
-    </div>
+    <LockedSelect
+      selectedValue={selected}
+      lockedStatus={lockedStatus}
+      onUnlock={onUnlock}
+      options={options}
+      onSelectValue={setSelected}
+    />
   )
 }

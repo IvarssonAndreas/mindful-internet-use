@@ -13,6 +13,7 @@ export function buildStorage(overrides: Partial<MiuStorage> = {}): MiuStorage {
     numBreath: 4,
     showQuoteWhileBreathing: false,
     selectedBreathingPattern: '424',
+    maxAccessTime: 120,
     ...overrides,
   }
 }

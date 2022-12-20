@@ -1,3 +1,5 @@
+import {TimeOptions} from './stop/CompleteButtons'
+
 export type Quote = {
   /** quote is misspelled but not safe to correct since users has already quotes in localstorage */
   qoute: string
@@ -14,6 +16,7 @@ export type TempAccess = {
 }
 
 export type MiuStorage = {
+  maxAccessTime: TimeOptions
   isMIUEnabled: boolean
   tempAccess: TempAccess[]
   defaultQuotes: Quote[]

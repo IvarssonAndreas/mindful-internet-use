@@ -1,15 +1,22 @@
-import React from 'react'
+import React, {useReducer} from 'react'
 import {SectionContainer, SectionHeading, TabHeading} from '@option-ui'
 import {
   CopyAfterBreathingSetting,
   QuoteWhileBreathing,
   SettingSwitchContainer,
 } from './SwitchSettings'
-import {NumberOfBreathSetting} from './NumberOfBreathSetting'
+
 import {SettingsIcon} from '@utils'
 import {SelectBreathingPattern} from '../../../breathing-patterns/SelectBreathingPattern'
+import {NumberOfBreathSetting} from './NumberOfBreathSetting'
+import {MaxAccessTime} from './MaxAccessTime'
 
+type LockedStatus = 'locked' | 'unlocked'
 export const SettingsTab = () => {
+  const [lockedStatus, unlock] = useReducer(
+    (): LockedStatus => 'unlocked',
+    'locked',
+  )
   return (
     <div className="space-y-6 text-amber-50">
       <TabHeading>
@@ -32,7 +39,12 @@ export const SettingsTab = () => {
 
       <SectionContainer>
         <SectionHeading>Number of breath on breathing timer</SectionHeading>
-        <NumberOfBreathSetting />
+        <NumberOfBreathSetting lockedStatus={lockedStatus} onUnlock={unlock} />
+
+        <SectionHeading>
+          Maximum selectable access time after breathing
+        </SectionHeading>
+        <MaxAccessTime lockedStatus={lockedStatus} onUnlock={unlock} />
       </SectionContainer>
 
       <SectionContainer>
