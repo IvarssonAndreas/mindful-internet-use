@@ -9,18 +9,6 @@ Unlike many other extensions, MIU will not provide a quick fix by blocking websi
 
 The goal of this extension is to give its users a tool to help them avoid mindless browsing and unintentional internet use. This will be done by encouraging the user to breathe and present quotes that remind the user what they value before allowing the user to access a listed website.
 
-#### Build the project
-
-
-```sh
-npm i
-npm start /*npm run build for production build */
-```
-1. Enter [ chrome://extensions/]( chrome://extensions/) in Chrome
-2. Enable developer mode in the top right corner
-3. Click load unpacked
-4. Select the build folder
-
 
 #### Privacy:
 
