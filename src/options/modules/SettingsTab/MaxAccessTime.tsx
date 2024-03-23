@@ -4,27 +4,23 @@ import {useSyncedState} from '@utils'
 import {LockedSelect, LockedSelectProps} from './LockedSelect'
 
 const options: SelectProps<number>['options'] = [
-  {label: '1', value: 1},
-  {label: '2', value: 2},
-  {label: '3', value: 3},
-  {label: '4', value: 4},
-  {label: '5', value: 5},
-  {label: '6', value: 6},
-  {label: '7', value: 7},
-  {label: '8', value: 8},
-  {label: '9', value: 9},
-  {label: '10', value: 10},
+  {label: '2min', value: 2},
+  {label: '5min', value: 5},
+  {label: '10min', value: 10},
+  {label: '15min', value: 15},
+  {label: '30min', value: 30},
+  {label: '45min', value: 45},
+  {label: '60min', value: 60},
+  {label: '90min', value: 90},
+  {label: '120min', value: 120},
 ]
 
-type NumberOfBreathSettingProps = {
+type MaxAccessTimeProps = {
   lockedStatus: LockedSelectProps['lockedStatus']
   onUnlock: LockedSelectProps['onUnlock']
 }
-export const NumberOfBreathSetting = ({
-  lockedStatus,
-  onUnlock,
-}: NumberOfBreathSettingProps) => {
-  const [selected, setSelected] = useSyncedState('numBreath')
+export const MaxAccessTime = ({lockedStatus, onUnlock}: MaxAccessTimeProps) => {
+  const [selected, setSelected] = useSyncedState('maxAccessTime')
 
   return (
     <LockedSelect
